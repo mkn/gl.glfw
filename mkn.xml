@@ -12,9 +12,14 @@ See ./license.txt
 -->
 <?xml version="1.0" encoding="UTF-8" ?>
 <maiken>
+	<properties>
+		<github>http://www.github.com/Dekken</github>
+		<git>${github}/gl.glfw.git</git>
+	</properties>
 	<project>
 		<name>gl.glfw</name>
 		<version>master</version>
+		<scr scm="git">${git}</scr>
 	</project>
 
 	<profiles>
@@ -37,6 +42,7 @@ See ./license.txt
 				<dependency>
 					<name>gl.gl</name>
 					<version>master</version>
+					<scr scm="git">${github}/gl.gl.git</scr>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -53,7 +59,7 @@ See ./license.txt
 				<library>Xinerama</library>
 				<library>pthread</library>
 			</libraries>
-			<build type="lib" mode="static" lang="c"> 
+			<build type="lib" lang="c"> 
 				<files>
 					<file type="c">
 						<args>
@@ -66,7 +72,7 @@ See ./license.txt
 			</build> 
 		</profile>
 		<profile name="bsd" parent="c" os="bsd">
-			<build type="lib" mode="static" lang="c"> 
+			<build type="lib" lang="c"> 
 				<files>
 					<file type="cpp">
 						<args><arg>-DMACOSX</arg></args>
@@ -84,10 +90,13 @@ See ./license.txt
 				<library>Gdi32</library>
 				<library>Xinput</library>
 			</libraries>
-			<build type="lib" mode="static" lang="c"> 
+			<build type="lib" lang="c"> 
 				<files>
 					<file type="c">
-						<args><arg>-D_GLFW_WIN32 -D_GLFW_WGL</arg></args>
+						<args>
+							<arg>-D_GLFW_WIN32</arg>
+							<arg>-D_GLFW_WGL</arg>
+						</args>
 					</file>
 				</files>
 			</build> 
