@@ -1,0 +1,39 @@
+
+
+name: gl.glfw
+version: master
+properties:
+    github: http://www.github.com/Dekken
+scm:
+    type: git
+    remote: ${github}/gl.glfw.git
+
+profiles:
+  - name: c
+    include: ./include ./src
+    source: |
+        ./src, false
+    args: -D_GLFW_USE_OPENGL=1
+    dependencies:
+      - name: gl.gl
+        version: master
+        scm:
+            type: git
+            remote: ${github}/gl.gl.git
+    lang: c
+  - name: bsd
+    parent: c
+    os: bsd
+    args: -DMACOSX
+  - name: nix
+    parent: c
+    os: nix
+    source: ./src/nix ./src/posix
+    library: dl X11 Xcursor Xrandr Xinerama 
+    args: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
+  - name: win
+    parent: c
+    os: win
+    source: ./src/win
+    library: Shell32 User32 Gdi32 Xinput
+    args: -D_GLFW_WIN32 -D_GLFW_WGL
