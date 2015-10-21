@@ -4,9 +4,7 @@ name: gl.glfw
 version: master
 properties:
     github: http://www.github.com/Dekken
-scm:
-    type: git
-    remote: ${github}/gl.glfw.git
+scm: ${github}/gl.glfw.git
 
 profiles:
   - name: c
@@ -17,9 +15,7 @@ profiles:
     dependencies:
       - name: gl.gl
         version: master
-        scm:
-            type: git
-            remote: ${github}/gl.gl.git
+        scm:  ${github}/gl.gl.git
     lang: c
   - name: bsd
     parent: c
