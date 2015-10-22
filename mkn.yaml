@@ -13,7 +13,7 @@ profiles:
         ./src, false
     args: -D_GLFW_USE_OPENGL=1
     dependencies:
-      - name: gl.gl
+      - name: khronos.OpenGL
         version: master
         scm:  ${github}/rant/khronos.OpenGL.git
     lang: c
