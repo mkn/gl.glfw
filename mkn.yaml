@@ -33,3 +33,5 @@ profiles:
     source: ./src/win
     library: Shell32 User32 Gdi32 Xinput
     args: -D_GLFW_WIN32 -D_GLFW_WGL
+    if_args:
+        shared: -D_GLFW_BUILD_DLL
