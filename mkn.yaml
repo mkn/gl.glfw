@@ -3,32 +3,23 @@
 name: gl.glfw
 version: master
 
-profiles:
-  - name: c
-    include: ./include ./src
-    source: |
-        ./src, false
-    args: -D_GLFW_USE_OPENGL=1
-    dependencies:
-      - name: khronos.OpenGL
-        version: master
-        scm: http://www.github.com/mkn/khronos.OpenGL.git
-    lang: c
-  - name: bsd
-    parent: c
-    os: bsd
-    args: -DMACOSX
-  - name: nix
-    parent: c
-    os: nix
-    source: ./src/nix ./src/posix
-    library: dl X11 Xcursor Xrandr Xinerama 
-    args: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
-  - name: win
-    parent: c
-    os: win
-    source: ./src/win
-    library: Shell32 User32 Gdi32 Xinput
-    args: -D_GLFW_WIN32 -D_GLFW_WGL
-    if_args:
-        shared: -D_GLFW_BUILD_DLL
+inc: ./include ./src
+src: |
+    ./src, false
+arg: -D_GLFW_USE_OPENGL=1
+dep:
+  - name: khronos.OpenGL
+    version: master
+    scm: http://www.github.com/mkn/khronos.OpenGL.git
+if_arg:
+    bsd: -DMACOSX
+    nix: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
+    win: -D_GLFW_WIN32 -D_GLFW_WGL
+    win_shared: -D_GLFW_BUILD_DLL
+if_src:
+    nix: ./src/nix ./src/posix
+    win: ./src/win
+if_lib:
+    nix: dl X11 Xcursor Xrandr Xinerama 
+    win: Shell32 User32 Gdi32 Xinput
+lang: c
