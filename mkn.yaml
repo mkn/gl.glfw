@@ -1,7 +1,6 @@
 
 
 name: gl.glfw
-version: master
 
 inc: ./include ./src
 src: |
@@ -10,7 +9,6 @@ arg: -D_GLFW_USE_OPENGL=1
 dep:
   - name: khronos.OpenGL
     version: master
-    scm: http://www.github.com/mkn/khronos.OpenGL.git
 if_arg:
     bsd: -DMACOSX
     nix: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
