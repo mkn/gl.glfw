@@ -5,7 +5,7 @@ name: gl.glfw
 inc: g/include  # ./src
 src: g/src
 arg: -D_GLFW_USE_OPENGL=1
-dep: khronos.OpenGL
+dep: gl.gl
 
 if_arg:
     bsd: -DMACOSX
