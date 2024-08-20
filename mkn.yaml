@@ -2,22 +2,16 @@
 
 name: gl.glfw
 
-inc: ./include ./src
-src: |
-    ./src, false
+inc: g/include  # ./src
+src: g/src
 arg: -D_GLFW_USE_OPENGL=1
-dep:
-  - name: khronos.OpenGL
-    version: master
+dep: khronos.OpenGL
+
 if_arg:
     bsd: -DMACOSX
     nix: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
     win: -D_GLFW_WIN32 -D_GLFW_WGL
     win_shared: -D_GLFW_BUILD_DLL
-if_src:
-    nix: ./src/nix ./src/posix
-    win: ./src/win
 if_lib:
     nix: dl X11 Xcursor Xrandr Xinerama 
     win: Shell32 User32 Gdi32 Xinput
-lang: c
