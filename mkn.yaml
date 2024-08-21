@@ -1,17 +1,22 @@
-
-
 name: gl.glfw
+parent: lib
 
-inc: g/include  # ./src
-src: g/src
-arg: -D_GLFW_USE_OPENGL=1
-dep: gl.gl
-
-if_arg:
+profile:
+- name: base
+  inc: g/include
+  if_arg:
     bsd: -DMACOSX
     nix: -D_GLFW_X11 -D_GLFW_GLX -D_GLFW_HAS_DLOPEN
     win: -D_GLFW_WIN32 -D_GLFW_WGL
     win_shared: -D_GLFW_BUILD_DLL
-if_lib:
-    nix: dl X11 Xcursor Xrandr Xinerama 
+  arg: -D_GLFW_USE_OPENGL=1
+
+- name: lib
+  src: g/src
+
+- name: dep
+  parent: lib
+  dep: gl.gl
+  if_lib:
+    nix: dl X11 Xcursor Xrandr Xinerama
     win: Shell32 User32 Gdi32 Xinput
