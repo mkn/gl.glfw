@@ -12,6 +12,7 @@ profile:
   arg: -D_GLFW_USE_OPENGL=1
 
 - name: lib
+  parent: base
   src: g/src
 
 - name: dep
